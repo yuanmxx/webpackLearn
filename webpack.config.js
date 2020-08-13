@@ -39,7 +39,8 @@ module.exports = {
 
                     // 样式会被打包到head的style标签中
                     // 'style-loader',
-                    "css-loader"
+                    "css-loader",
+                    'less-loader'
                 ]
             },
             // 打包iconfont

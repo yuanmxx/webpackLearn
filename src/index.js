@@ -1,5 +1,5 @@
 import Text from './image/text.png';
-import "./css/haha.css";
+import "./css/index.css";
 import './font/iconfont.css';
 
 var img = new Image();
