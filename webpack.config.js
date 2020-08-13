@@ -2,7 +2,7 @@ const path = require('path')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
+const devMode = process.env.NODE_ENV === 'development'; // 是否是开发模式
 module.exports = {
     //入口文件的配置项
     entry: './src/index.js',
@@ -40,7 +40,8 @@ module.exports = {
                     // 样式会被打包到head的style标签中
                     // 'style-loader',
                     "css-loader",
-                    'less-loader'
+                    'postcss-loader',
+                    'less-loader',
                 ]
             },
             // 打包iconfont
