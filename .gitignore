@@ -4,9 +4,10 @@
 /node_modules
 /yarn.lock
 /package-lock.json
+/dist
 
 # production
-/build
+/dist
 
 # misc
 .DS_Store
