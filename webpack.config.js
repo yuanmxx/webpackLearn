@@ -10,10 +10,10 @@ module.exports = {
     //出口文件的配置项
     output: {
         //输出的路径，用了Node语法
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'build'),
         //输出的文件名称
         filename: 'bundle.js',
-        publicPath: '/dist/'
+        publicPath: '/build/'
     },
     module: {
         rules: [{
@@ -50,7 +50,7 @@ module.exports = {
                 use: [{
                     loader: 'file-loader',
                     options: {
-                        // dist输出路劲---dist/font
+                        // build输出路劲---build/font
                         outputPath: 'font/'
                     }
                 }, ]
@@ -72,7 +72,7 @@ module.exports = {
         })
     ],
     devServer: {
-        contentBase: './dist/index.html',
+        contentBase: './build/index.html',
         // 设置端口
         port: 8888,
         // 是否支持热更新
