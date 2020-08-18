@@ -1,5 +1,7 @@
 const path = require('path')
-// const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const TerserJSPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const devMode = process.env.NODE_ENV === 'development'; // 是否是开发模式
@@ -47,15 +49,15 @@ module.exports = {
                 test: /\.css$/,
                 use: [
                     // 单独打成css包
-                    // {
-                    //     loader: MiniCssExtractPlugin.loader,
-                    //     options: {
-                    //         publicPath: '../'
-                    //     }
-                    // },
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            publicPath: '../'
+                        }
+                    },
 
                     // 使用style-loader样式会被打包到head的style标签中
-                    'style-loader',
+                    // 'style-loader',
                     "css-loader",
                     'postcss-loader',
                     'less-loader',
@@ -76,10 +78,16 @@ module.exports = {
     },
     plugins: [
         // 打包后把css抽离成单独的文件
-        // new MiniCssExtractPlugin({
-        //     filename: "css/[name]_[hash:8].css",
-        //     chunkFilename: "[id].css"
-        // }),
+        new MiniCssExtractPlugin({
+            filename: "css/[name]_[hash:8].css",
+            chunkFilename: "[id].css"
+        }),
+        
+        // 压缩css
+        new OptimizeCssAssetsPlugin(),
+
+        // 压缩js
+        new TerserJSPlugin(),
 
         // 自动删除output.path文件
         new CleanWebpackPlugin(),
