@@ -18,7 +18,10 @@ module.exports = {
         //输出的文件名称
         filename: 'bundle.js',
         // 输出文件路径前缀
-        publicPath: '/build/'
+        // publicPath: '/build/'
+
+        // 使用npm run server时候
+        publicPath: '/'
     },
     module: {
         rules: [
