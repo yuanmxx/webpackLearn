@@ -4,7 +4,7 @@ import './font/iconfont.css';
 
 var img = new Image();
 img.src = Text;
-console.log(1111)
+console.log(2222)
 
 var divs = document.createElement("div")
 divs.className="iconfont icon-mianxingbingbao"

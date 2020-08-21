@@ -9,6 +9,8 @@ module.exports = {
     //入口文件的配置项
     entry: './src/index.js',
     mode: 'development',
+    // 更改代码之后不用build,保存代码之后自动打包，但是需要手动刷新页面
+    // watch: true,
     //出口文件的配置项
     output: {
         //输出的路径，用了Node语法
@@ -20,7 +22,7 @@ module.exports = {
     },
     module: {
         rules: [
-            // url-loader把图片转成base64，和bound.js打包到一起
+            // url-loader把图片转成base64，和bundle.js打包到一起
             // {
             //     test: /\.(png|jpg|gif|bmp)$/,
             //     use: [{
@@ -82,12 +84,12 @@ module.exports = {
             filename: "css/[name]_[hash:8].css",
             chunkFilename: "[id].css"
         }),
-        
+
         // 压缩css
         new OptimizeCssAssetsPlugin(),
 
         // 压缩js
-        new TerserJSPlugin(),
+        // new TerserJSPlugin(),
 
         // 自动删除output.path文件
         new CleanWebpackPlugin(),
@@ -107,5 +109,6 @@ module.exports = {
         hotOnly: true,
         // 自动打开浏览器
         open: true
-    }
+    },
+    // devtool:'cheap-module-source-map',
 }
