@@ -18,10 +18,10 @@ module.exports = {
         //输出的文件名称
         filename: 'bundle.js',
         // 输出文件路径前缀
-        // publicPath: '/build/'
+        publicPath: '/build/'
 
         // 使用npm run server时候
-        publicPath: '/'
+        // publicPath: '/'
     },
     module: {
         rules: [
@@ -39,6 +39,23 @@ module.exports = {
             //         }
             //     }]
             // },
+            {
+                test: /\.(ts|js)$/,
+                exclude: /node_modules/,
+                // use: [{
+                    loader: 'babel-loader',
+                    // options:{
+                    //     presets: [['@babel/preset-env'],{
+                    //         useBuiltIns: 'usage'
+                    //     }]
+                    // }
+                    // options: {
+                    //     name: '[name]_[hash:8].[ext]',
+                    //     // 写法同 name: 'image/[name]_[hash:8].[ext]',
+                    //     outputPath: 'image'
+                    // }
+                // }]
+            },
             {
                 test: /\.(png|jpg|gif)$/,
                 use: [{
@@ -91,7 +108,7 @@ module.exports = {
         // 压缩css
         new OptimizeCssAssetsPlugin(),
 
-        // 压缩js
+        // 压缩js代码(mode:development有用prod自动压缩)
         // new TerserJSPlugin(),
 
         // 自动删除output.path文件
@@ -102,6 +119,16 @@ module.exports = {
             template: 'src/index.html'
         })
     ],
+    optimization: {
+        minimize: true,
+        // tree shaking(mode:development有用)
+        // usedExports:true
+
+        // 压缩js代码(mode:development有用prod自动压缩)
+        // minimizer: [new TerserJSPlugin({
+        //     sourceMap: true
+        // })],
+    },
     devServer: {
         contentBase: './build/index.html',
         // 设置端口
@@ -113,5 +140,5 @@ module.exports = {
         // 自动打开浏览器
         open: true
     },
-    // devtool:'cheap-module-source-map',
+    devtool:'cheap-module-source-map',
 }
