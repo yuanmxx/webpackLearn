@@ -5,6 +5,7 @@ const TerserJSPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const devMode = process.env.NODE_ENV === 'development'; // 是否是开发模式
+console.log(path.join(__dirname,'build'),__dirname)
 module.exports = {
     //入口文件的配置项
     entry: './src/index.js',
@@ -18,7 +19,7 @@ module.exports = {
         //输出的文件名称
         filename: 'bundle.js',
         // 输出文件路径前缀
-        publicPath: '/build/'
+        publicPath: './build/'
 
         // 使用npm run server时候
         // publicPath: '/'
@@ -130,7 +131,6 @@ module.exports = {
         // })],
     },
     devServer: {
-        contentBase: './build/index.html',
         // 设置端口
         port: 8888,
         // 是否支持热更新

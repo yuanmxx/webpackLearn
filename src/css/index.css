@@ -1,13 +1,12 @@
 @import './less.less';
-
-.webpack {
+@import '../font//iconfont.css';
+#root {
+    color:orangered;
+    font-size: 40px;
+}
+/* .webpack {
     color: yellowgreen;
     font-size: 30px;
     font-weight: 700;
     transform: rotate(-45deg);
-}
-/* #root {
-    height: 800px;
-    background: url(../image/text.png) no-repeat;
-    background-size:100% 100%;
 } */
