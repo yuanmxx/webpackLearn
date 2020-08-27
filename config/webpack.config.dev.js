@@ -34,8 +34,8 @@ module.exports = {
             filename: "css/[name]_[hash:8].css",
             chunkFilename: "[id].css"
         }),
-        new OptimizeCssAssetsPlugin(),
-        new TerserJSPlugin(),
+        // new OptimizeCssAssetsPlugin(),
+        // new TerserJSPlugin(),
         new webpack.HotModuleReplacementPlugin()
     ],
     module: {
@@ -98,6 +98,7 @@ module.exports = {
     // 1.设置devServer.publicPath取设置的，如果这没有设置devServer.publicPath，就取output.publicPath,都没设置取默认值
     // 2.如果目录下存在build文件，直接先走目录下的build文件，如果没有build文件，在走内存
     // 3.设置了contentBase，如果不存在build文件，就走devServer.publicPath
+    // 4.devServer只有在development下才有用，上线不需要
     devServer: {
         // 以那个文件为基准，一般设置成output.path(build)
         contentBase: 'build',
@@ -106,6 +107,7 @@ module.exports = {
 
         // 1.如果这里需要设置publicPath:'/text'，那么output.publicPath需要设置成publicPath:'/text'
         // 2.npm run build:start的时候，在浏览器http://localhost:7777/text可正常显示
+        // 3.devServer.publicPath和output.publicPath需要保持一致，否则会出现css和js文件找不到的错误
         publicPath:'/text',
 
         open: true,
