@@ -6,6 +6,8 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
 const Webpackbar = require('webpackbar');
+const webpack = require('webpack');
+
 module.exports = {
     mode: 'development',
     entry: {
@@ -18,9 +20,9 @@ module.exports = {
         // publicPath:'./'
 
         // 配合devServer使用
-        publicPath:'/text',
+        // publicPath:'/text',
     },
-    devtool: "nosources-source-map",
+    devtool: "source-map",
     plugins:[
         new HtmlWebpackPlugin({
             filename: 'index.html',
@@ -32,13 +34,14 @@ module.exports = {
             filename: "css/[name]_[hash:8].css",
             chunkFilename: "[id].css"
         }),
-        // new OptimizeCssAssetsPlugin(),
-        // new TerserJSPlugin(),
+        new OptimizeCssAssetsPlugin(),
+        new TerserJSPlugin(),
+        new webpack.HotModuleReplacementPlugin()
     ],
     module: {
         rules:[
             {
-                test:/\.css$/,
+                test:/\.(css|less)$/,
                 use: [
                     // "style-loader",
                     {
@@ -75,8 +78,22 @@ module.exports = {
                        }
                    }
                 ]
+            },
+            {
+                test:/\.(js|ts|jsx|tsx)$/,
+                use: [
+                    {
+                        loader: 'babel-loader'
+                    }
+                ]
             }
         ]
+    },
+    resolve: {
+        // 配置别名@
+        alias: {
+            '@': path.resolve(__dirname,'../src'),
+        },
     },
     // 1.设置devServer.publicPath取设置的，如果这没有设置devServer.publicPath，就取output.publicPath,都没设置取默认值
     // 2.如果目录下存在build文件，直接先走目录下的build文件，如果没有build文件，在走内存
@@ -87,11 +104,15 @@ module.exports = {
         // 默认值是/
         // publicPath:'/',
 
-        // 1.如果这里需要设置publicPath:'/hehe'，那么output.publicPath需要设置成publicPath:'hehe/'
+        // 1.如果这里需要设置publicPath:'/text'，那么output.publicPath需要设置成publicPath:'/text'
         // 2.npm run build:start的时候，在浏览器http://localhost:7777/text可正常显示
         publicPath:'/text',
 
         open: true,
         port: 7777,
+        // 不用浏览器刷新页面，页面就更新
+        hot: true,
+        // 阻止浏览器刷新,页面也不更新
+        // hotOnly: true,
     },
 }
