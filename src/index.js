@@ -1,6 +1,10 @@
 // import Text from './image/text.png';
 import "./css/less.less";
-import Header from '@/pages/header/index.jsx'
+import Wrap from '@/layouts/index.jsx';
+import {
+    BrowserRouter as Router,
+    Route
+  } from 'react-router-dom'
 // import './font/iconfont.css';
 // import { add } from './utils'
 // import '@babel/polyfill';
@@ -27,4 +31,13 @@ list.map((each,i) => console.log(`promise---${i}`,each))
 import * as React from 'react';
 import ReactDom from 'react-dom';
 
-ReactDom.render(<div><Header /></div>,document.getElementById('root'))
+// ReactDom.render(
+//     <Router>
+//         <Route component = {Wrap} />
+//     </Router>,
+//   document.getElementById('root'))
+
+
+ReactDom.render(
+ <Wrap />,
+document.getElementById('root'))

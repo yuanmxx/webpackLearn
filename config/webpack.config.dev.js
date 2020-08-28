@@ -17,7 +17,7 @@ module.exports = {
     output: {
         filename: '[name]_[hash:8].js',
         path: path.resolve(__dirname,'../build'),
-        // publicPath:'./'
+        // publicPath:'/'
 
         // 配合devServer使用
         // publicPath:'/text',
@@ -81,11 +81,7 @@ module.exports = {
             },
             {
                 test:/\.(js|ts|jsx|tsx)$/,
-                use: [
-                    {
-                        loader: 'babel-loader'
-                    }
-                ]
+                use:'babel-loader'
             }
         ]
     },
@@ -103,12 +99,12 @@ module.exports = {
         // 以那个文件为基准，一般设置成output.path(build)
         contentBase: 'build',
         // 默认值是/
-        // publicPath:'/',
+        publicPath:'/',
 
         // 1.如果这里需要设置publicPath:'/text'，那么output.publicPath需要设置成publicPath:'/text'
         // 2.npm run build:start的时候，在浏览器http://localhost:7777/text可正常显示
         // 3.devServer.publicPath和output.publicPath需要保持一致，否则会出现css和js文件找不到的错误
-        publicPath:'/text',
+        // publicPath:'/text',
 
         open: true,
         port: 7777,
@@ -116,5 +112,6 @@ module.exports = {
         hot: true,
         // 阻止浏览器刷新,页面也不更新
         // hotOnly: true,
+        historyApiFallback: true
     },
 }
