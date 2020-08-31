@@ -28,6 +28,7 @@
     },
     "dependencies": {
         "@babel/core": "^7.11.4",
+        "@babel/plugin-syntax-dynamic-import": "^7.8.3",
         "@babel/polyfill": "^7.10.4",
         "@babel/preset-react": "^7.10.4",
         "autoprefixer": "^9.8.4",
@@ -36,8 +37,10 @@
         "css-loader": "^4.2.1",
         "express": "^4.17.1",
         "file-loader": "^6.0.0",
+        "jquery": "^3.5.1",
         "less": "^3.11.3",
         "less-loader": "^7.0.0",
+        "lodash": "^4.17.20",
         "mini-css-extract-plugin": "^0.10.0",
         "optimize-css-assets-webpack-plugin": "^5.0.3",
         "postcss-loader": "^3.0.0",

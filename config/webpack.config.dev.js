@@ -9,9 +9,13 @@ const Webpackbar = require('webpackbar');
 const webpack = require('webpack');
 
 module.exports = {
+    // development模式默认没有tree shaking
+    // build之后得main.js   /*! exports provided: add, minus */
+    // production模式不用配置optimization，只用配置sideEffects
     mode: 'development',
     entry: {
-        main: './src/index.js'
+        // lodash: './src/lodash.js',
+        main: './src/index.js',
     },
     // watch:true,
     output: {
@@ -23,6 +27,40 @@ module.exports = {
         // publicPath:'/text',
     },
     devtool: "source-map",
+    // dev开启tree shaking
+    // build之后的main.js 
+    /*! exports provided: add, minus */
+    /*! exports used: add */
+    /* unused harmony export minus */
+    // optimization:{
+    //     usedExports:true
+    // },
+    optimization:{
+        splitChunks: {
+            chunks: 'initial',
+            minSize: 30000,
+            minChunks: 1,
+            maxAsyncRequests: 5,
+            maxInitialRequests: 3,
+            automaticNameDelimiter: '~',
+            name: true,
+            cacheGroups: {
+                vendors:false,
+                default: false
+            }
+            // cacheGroups: {
+            //     vendors: {
+            //         test: /[\\/]node_modules[\\/]/,
+            //         priority: -10
+            //     },
+            //     default: {
+            //         minChunks: 2,
+            //         priority: -20,
+            //         reuseExistingChunk: true
+            //     }
+            // }
+          },
+    },
     plugins:[
         new HtmlWebpackPlugin({
             filename: 'index.html',
