@@ -15,7 +15,6 @@
     "author": "",
     "license": "ISC",
     "sideEffects": [
-        "./src/utils.js",
         "*.css",
         "*.less"
     ],

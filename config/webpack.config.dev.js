@@ -26,7 +26,7 @@ module.exports = {
         // 配合devServer使用
         // publicPath:'/text',
     },
-    devtool: "source-map",
+    // devtool: "source-map",
     // dev开启tree shaking
     // build之后的main.js 
     /*! exports provided: add, minus */
@@ -36,29 +36,37 @@ module.exports = {
     //     usedExports:true
     // },
     optimization:{
+        usedExports:true,
         splitChunks: {
-            chunks: 'initial',
+            chunks: 'all',
+            // 表示之分割同步的模块
+            // chunks: 'initial',
+            // 也就是只从动态加载得模块里面进行拆分
+            // chunks: 'async',
             minSize: 30000,
+            // cacheGroups里面每个组的minChunks会覆盖这个，没有设置的就使用这个默认值
             minChunks: 1,
+            // 每一个动态加载的文件import()，里面的最大并行请求数量，如果两个以上的模块满足cacheGroup的规则，体积大的文件优先拆分
             maxAsyncRequests: 5,
+            // 每一个入口里面最多可以加载好多个拆分的js文件，如果两个以上的模块满足cacheGroup的规则，体积大的文件优先拆分
             maxInitialRequests: 3,
             automaticNameDelimiter: '~',
             name: true,
-            cacheGroups: {
-                vendors:false,
-                default: false
-            }
             // cacheGroups: {
-            //     vendors: {
-            //         test: /[\\/]node_modules[\\/]/,
-            //         priority: -10
-            //     },
-            //     default: {
-            //         minChunks: 2,
-            //         priority: -20,
-            //         reuseExistingChunk: true
-            //     }
+            //     vendors:false,
+            //     default: false
             // }
+            cacheGroups: {
+                vendors: {
+                    test: /[\\/]node_modules[\\/]/,
+                    priority: -10
+                },
+                default: {
+                    minChunks: 2,
+                    priority: -20,
+                    reuseExistingChunk: true
+                }
+            }
           },
     },
     plugins:[

@@ -4,7 +4,7 @@
 // import "./css/less.less";
 // import './font/iconfont.css';
 // import { add } from './utils'
-// import '@babel/polyfill';
+// // import '@babel/polyfill';
 
 // var img = new Image();
 // img.src = Text;
@@ -72,12 +72,13 @@
 //   document.body.append(ele)
 // })
 
-// 代码分割（异步）
-import JQ from 'jquery';
-console.log(JQ)
+//代码分割（异步）
+// import JQ from 'jquery';
+// console.log(JQ)
 async function getLodash(){
   // magic Comments写法，可以更改打包分块代码0.js/1.js...模块的名字
-  const { default: _ } = await import(/* webpackChunkName: "ggggg"*/'lodash');
+//   const { default: _ } = await import(/* webpackChunkName: "lodash-"*/'lodash');
+  const { default: _ } = await import(/* webpackChunkName: "utils-"*/'./utils');
   const ele = document.createElement('div');
   ele.innerHTML  = _.join(['yuan','ming','xiang'],'--->');
   return ele;

@@ -1,3 +1,5 @@
+import lodash from 'lodash';
+import JQ from 'jquery';
 export const add = (a,b) => {
     console.log(a+b);
     return a+b;
