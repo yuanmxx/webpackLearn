@@ -33,10 +33,10 @@
 // import ReactDom from 'react-dom';
 // import Wrap from '@/layouts/index.jsx';
 // import "./css/less.less";
-// import {
-//     BrowserRouter as Router,
-//     Route
-//   } from 'react-router-dom'
+// // import {
+// //     BrowserRouter as Router,
+// //     Route
+// //   } from 'react-router-dom'
 
 // ReactDom.render(
 //  <Wrap />,
@@ -72,19 +72,20 @@
 //   document.body.append(ele)
 // })
 
+
 //代码分割（异步）
-// import JQ from 'jquery';
+import JQ from 'jquery';
 // console.log(JQ)
 async function getLodash(){
   // magic Comments写法，可以更改打包分块代码0.js/1.js...模块的名字
 //   const { default: _ } = await import(/* webpackChunkName: "lodash-"*/'lodash');
-  const { default: _ } = await import(/* webpackChunkName: "utils-"*/'./utils');
-  const ele = document.createElement('div');
-  ele.innerHTML  = _.join(['yuan','ming','xiang'],'--->');
-  return ele;
+  const { add } = await import(/* webpackChunkName: "utils-"*/'./utils');
+//   const ele = document.createElement('div');
+//   ele.innerHTML  = _.join(['yuan','ming','xiang'],'--->');
+//   return ele;
+    return add(1,4)
 }
 
 getLodash().then(ele => {
-  console.log(111,ele);
   document.body.append(ele)
 })
