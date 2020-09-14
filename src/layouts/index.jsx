@@ -3,13 +3,15 @@ import Headers from './Header/index.jsx';
 import Footer from './Footer/index.jsx';
 import Content from './Content/index.jsx';
 import routes from '../Router/routes';
-import { Route, Redirect, Switch,  BrowserRouter as Router, } from 'react-router-dom'
+import { Route, Redirect, Switch,  BrowserRouter as Router, } from 'react-router-dom';
+import { ConfigProvider } from 'antd';
 import './index.less';
 
 class Header extends Component{
     render(){
         console.log(this.props)
         return(
+            <ConfigProvider prefixCls="ymx">
             <div className="wrap">
                 <Headers />
                 <Content>
@@ -32,6 +34,7 @@ class Header extends Component{
                 </Content>
                 <Footer />
             </div>
+            </ConfigProvider>
         )
     }
 }

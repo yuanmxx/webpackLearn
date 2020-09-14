@@ -26,6 +26,7 @@ module.exports = {
         // 配合devServer使用
         // publicPath:'/text',
     },
+    performance:false,
     // devtool: "source-map",
     // dev开启tree shaking
     // build之后的main.js 
@@ -98,7 +99,21 @@ module.exports = {
                     },
                     'css-loader',
                     'postcss-loader',
-                    'less-loader'
+                    {
+                        loader: 'less-loader',
+                        options: {
+                            lessOptions:{
+                                javascriptEnabled: true,
+                                modifyVars: {
+                                    // 一下两个必须配置"style": true，否则不起作用，因为less才有变量
+                                    "@primary-color": "red",
+                                    // 这一个除了上面要求外，还要配合<ConfigProvider prefixCls="ymx">使用，这里只是改变打包css代码的前缀
+                                    // <ConfigProvider prefixCls="ymx">里面的prefixCls是改变js里面的classNa名称
+                                    "@ant-prefix": "ymx",
+                                },
+                            }
+                        },
+                    }
                 ]
             },
             {
@@ -127,7 +142,8 @@ module.exports = {
             },
             {
                 test:/\.(js|ts|jsx|tsx)$/,
-                use:'babel-loader'
+                exclude: /node_modules/,
+                loader:'babel-loader'
             }
         ]
     },
