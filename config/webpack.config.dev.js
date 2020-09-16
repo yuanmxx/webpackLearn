@@ -16,6 +16,7 @@ module.exports = {
     entry: {
         // lodash: './src/lodash.js',
         main: './src/index.js',
+        // main1: './src/index.js',
     },
     // watch:true,
     output: {
@@ -58,6 +59,8 @@ module.exports = {
             //     default: false
             // }
             cacheGroups: {
+                // vendors: false,
+                // default: false
                 vendors: {
                     test: /[\\/]node_modules[\\/]/,
                     priority: -10
@@ -130,7 +133,7 @@ module.exports = {
                 ]
             },
             {
-                test:/\.(ttf|woff|eot|svg)$/,
+                test:/\.(ttf|woff|woff2|eot|svg)$/,
                 use: [
                    {
                        loader:  "file-loader",

@@ -29,19 +29,14 @@
 
 // react配置解析jsx
 
-import * as React from 'react';
+import React from 'react';
 import ReactDom from 'react-dom';
-import Wrap from '@/layouts/index.jsx';
+import Wrap from '@/layouts/index.js';
 import "./css/less.less";
-// import {
-//     BrowserRouter as Router,
-//     Route
-//   } from 'react-router-dom'
 
 ReactDom.render(
  <Wrap />,
 document.getElementById('root'))
-
 
 // 代码没有分割
 

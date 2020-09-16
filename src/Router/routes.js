@@ -1,18 +1,19 @@
-import { Home,About, Detail } from '../pages'
+
+import AsyncComponent from '@/utils.js';
 export default [
     {
         path:'/home',
-        component:Home,
+        componentPath: AsyncComponent(() => import('../pages/Home/index.jsx')),
         key:'home'
     },
     {
         path:'/detail',
-        component:Detail,
+        componentPath: AsyncComponent(() => import('../pages/Detail/index.jsx')),
         key:'detail'
     },
     {
         path:'/about',
-        component:About,
+        componentPath: AsyncComponent(() => import('../pages/About/index.jsx')),
         key:'about'
     },
 ]

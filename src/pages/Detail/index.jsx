@@ -3,7 +3,7 @@ export default class Header extends Component{
     render(){
         return(
             <div className="wrap">
-                detile
+               我是detile
             </div>
         )
     }

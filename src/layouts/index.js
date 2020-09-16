@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import Headers from './Header/index.jsx';
 import Footer from './Footer/index.jsx';
 import Content from './Content/index.jsx';
-import routes from '../Router/routes';
+import routes from '@/Router/routes';
 import { Route, Redirect, Switch,  BrowserRouter as Router, } from 'react-router-dom';
 import { ConfigProvider } from 'antd';
+
 import './index.less';
 
 class Header extends Component{
@@ -23,7 +24,7 @@ class Header extends Component{
                                     <Route 
                                         key = {route.path}
                                         path = {route.path}
-                                        component = {route.component}/>
+                                        component = {route.componentPath}/>
                                     )
                                 })
                             }
